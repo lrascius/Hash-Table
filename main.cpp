@@ -14,7 +14,21 @@ int main(int argc, char const *argv[])
 	hash.insert("lol6", "someval7");
 	hash.insert("lol7", "someval8");
 	hash.insert("lol8", "someval9");
+	hash.insert("lol9", "someval10");
+	hash.insert("lol10", "someval11");
+	hash.insert("lol11", "someval12");
+	hash.insert("lol12", "someval13");
+	hash.insert("lol13", "someval14");
+	hash.insert("lol14", "someval15");
+	hash.insert("lol15", "someval16");
+	hash.insert("lol16", "someval17");
+	hash.insert("lol17", "someval18");
+	hash.insert("lol18", "someval19");
+	hash.insert("lol19", "someval20");
+	hash.insert("lol20", "someval21");
+	hash.insert("lol21", "someval22");	
 	hash.print();
+	cout << hash.length() << endl;
 	return 0;
 
 }

@@ -10,6 +10,7 @@ class HashTable
 
 	private:
 		static const int size = 10;
+		size_t count;
 
 		struct item
 		{
@@ -25,6 +26,7 @@ class HashTable
 	public:
 		HashTable();
 		void insert(string key, string value);
+		size_t length();
 		void print();
 
 };

@@ -6,6 +6,7 @@ using namespace std;
 
 HashTable::HashTable()
 {
+	count = 0;
 	for(int i = 0; i < size; i++)
 	{
 		item* new_item = new item;
@@ -37,7 +38,6 @@ void HashTable::insert(string key, string value)
 	{
 		table[index]->key = key;
 		table[index]->value = value;
-		table[index]->next = NULL;
 	}
 	else
 	{
@@ -47,26 +47,32 @@ void HashTable::insert(string key, string value)
 		new_item->next = table[index];
 		table[index] = new_item;
 	}
+
+	count++;
 }
 
 void HashTable::print()
 {
 	for(int i = 0; i < size; i++)
 	{
-		// if(table[i]->next != NULL)
-		// {
-		// 	item* item_ptr = table[i]; 
-		// 	// while(item_ptr != NULL)
-		// 	// {
-		// 		cout << item_ptr << endl;
-		// 		cout << i << ": " << table[i]->key << " : " << table[i]->value << ", " << endl;
-		// 		item_ptr = item_ptr->next;
-		// 		cout << item_ptr->next << endl;
-		// 	// }
-		// }
-		// else
-		// {
+		if(table[i]->next != NULL)
+		{
+			item* item_ptr = table[i]; 
+			while(item_ptr->next != NULL)
+			{
+				cout << i << ": " << item_ptr->key << " : " << item_ptr->value << ", " << endl;
+				item_ptr = item_ptr->next;
+			}
+			cout << i << ": " << item_ptr->key << " : " << item_ptr->value << ", " << endl;
+		}
+		else
+		{
 			cout << i << ": " << table[i]->key << " : " << table[i]->value << ", " << endl;
-	// 	}
+		}
 	}
+}
+
+size_t HashTable::length()
+{
+	return count;
 }
