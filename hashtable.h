@@ -18,7 +18,7 @@ class HashTable
 			item* next;
 		};
 
-		item table[size];
+		item* table[size];
 
 		int hash(string key);
 
