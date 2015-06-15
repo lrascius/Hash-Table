@@ -5,9 +5,9 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
 	HashTable hash; 
-	hash.insert("lol0", "someval1");
-	hash.insert("lol1", "someval2");
-	hash.insert("lol2", "someval3");
+	hash.insert("lol", "someval1");
+	hash.insert("lol", "someval2");
+	hash.insert("lol", "someval3");
 	hash.insert("lol3", "someval4");
 	hash.insert("lol4", "someval5");
 	hash.insert("lol5", "someval6");
@@ -26,9 +26,11 @@ int main(int argc, char const *argv[])
 	hash.insert("lol18", "someval19");
 	hash.insert("lol19", "someval20");
 	hash.insert("lol20", "someval21");
-	hash.insert("lol21", "someval22");	
+
 	hash.print();
 	cout << hash.length() << endl;
+	cout << hash.getValue("lol8") << endl;
+	// cout << hash.getValue("lol40") << endl;	
 	return 0;
 
 }

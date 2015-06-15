@@ -20,14 +20,16 @@ class HashTable
 		};
 
 		item* table[size];
-
 		int hash(string key);
+		bool inTable(string key, string value);
 
 	public:
 		HashTable();
 		void insert(string key, string value);
 		size_t length();
 		void print();
+		string getValue(string key);
+		void remove(string key);
 
 };
 

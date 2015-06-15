@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdexcept>
 using namespace std;
 
 #include "hashtable.h"
@@ -23,32 +24,49 @@ int HashTable::hash(string key)
 	int index = 0; 
 
 	for(int i = 0; i < key.length(); i++)
-	{
 		index += (int) key[i];
-	}
 
 	return index % size;
 }
 
-void HashTable::insert(string key, string value)
+string HashTable::getValue(string key)
 {
 	int index = hash(key);
+	item* item_ptr = table[index];
 
-	if(table[index]->key == "EMPTY" && table[index]->value == "EMPTY")
-	{
-		table[index]->key = key;
-		table[index]->value = value;
-	}
-	else
-	{
-		item* new_item = new item;
-		new_item->key = key;
-		new_item->value = value;
-		new_item->next = table[index];
-		table[index] = new_item;
-	}
+	if(item_ptr->key == key)
+		return item_ptr->value;
 
-	count++;
+	while(item_ptr->next != NULL)
+	{
+		item_ptr = item_ptr->next;
+		if(item_ptr->key == key)
+			return item_ptr->value;
+	}
+	throw std::invalid_argument("Key is not in the table");
+}
+
+void HashTable::insert(string key, string value)
+{
+	if(!inTable(key, value))
+	{
+		int index = hash(key);
+
+		if(table[index]->key == "EMPTY" && table[index]->value == "EMPTY")
+		{
+			table[index]->key = key;
+			table[index]->value = value;
+		}
+		else
+		{
+			item* new_item = new item;
+			new_item->key = key;
+			new_item->value = value;
+			new_item->next = table[index];
+			table[index] = new_item;
+		}
+		count++;
+	}
 }
 
 void HashTable::print()
@@ -71,6 +89,27 @@ void HashTable::print()
 		}
 	}
 }
+
+bool HashTable::inTable(string key, string value)
+{
+	int index = hash(key);
+	item* item_ptr = table[index];
+
+	if(item_ptr->key == key)
+		return true;
+
+	while(item_ptr->next != NULL)
+	{
+		item_ptr = item_ptr->next;
+		if(item_ptr->key == key)
+		{
+			item_ptr->value = value;
+			return true;
+		}
+	}
+	return false;
+}
+
 
 size_t HashTable::length()
 {
