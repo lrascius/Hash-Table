@@ -26,8 +26,15 @@ int main(int argc, char const *argv[])
 	// hash.insert("lol20", "someval21");
 	hash.print();
 	cout << "--------------------------" << endl;
+	hash.remove("lol14");
 	hash.remove("lol15");
+	hash.remove("lol16");
+	hash.remove("lol");
+	hash.remove("lol3");
+	hash.remove("lol4");
+	hash.remove("lol5");
 	hash.print();
+	cout << hash.length();
 
 	return 0;
 

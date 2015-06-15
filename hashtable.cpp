@@ -143,6 +143,11 @@ void HashTable::remove(string key)
 		}
 		item_ptr = item_ptr->next;
 	}
+
+	if(found)
+		count--;
+	else
+		throw std::invalid_argument("Key is not in the table");
 }
 
 size_t HashTable::length()
