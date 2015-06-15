@@ -110,6 +110,40 @@ bool HashTable::inTable(string key, string value)
 	return false;
 }
 
+void HashTable::remove(string key)
+{
+	bool found = false;
+	int index = hash(key); 
+	if(table[index]->key == "EMPTY" && table[index]->value == "EMPTY")
+		throw std::invalid_argument("Key is not in the table");
+
+	item* item_ptr = table[index];
+	if(item_ptr->key == key && item_ptr->next == NULL)
+	{
+		found = true;
+		item_ptr->key = "EMPTY";
+		item_ptr->value = "EMPTY";
+	}
+
+	if(item_ptr->key == key && item_ptr->next != NULL)
+	{
+		found = true;
+		table[index] = item_ptr->next;
+		delete item_ptr;
+	}
+
+	while(item_ptr->next != NULL)
+	{
+		if(item_ptr->next->key == key)
+		{
+			found = true;
+			item_ptr->next = item_ptr->next->next;
+			delete item_ptr->next;
+			break;
+		}
+		item_ptr = item_ptr->next;
+	}
+}
 
 size_t HashTable::length()
 {
